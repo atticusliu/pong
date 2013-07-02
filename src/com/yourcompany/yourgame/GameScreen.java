@@ -2,8 +2,12 @@ package com.yourcompany.yourgame;
 
 import java.util.List;
 
+import android.app.Activity;
+import android.app.Application;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.View;
+
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Image;
@@ -43,9 +47,10 @@ public class GameScreen extends Screen {
 		paint.setAntiAlias(true);
 		paint.setColor(Color.BLACK);
 
+		//for pause button
 		// for game over
 		paint1 = new Paint();
-		paint1.setTextSize(60);
+		paint1.setTextSize(40);
 		paint1.setTextAlign(Paint.Align.CENTER);
 		paint1.setAntiAlias(true);
 		paint1.setColor(Color.WHITE);
@@ -59,8 +64,8 @@ public class GameScreen extends Screen {
 		paddleY = 50;
 
 		// xInc and yInc are speed settings
-		xInc = 10;
-		yInc = 6;
+		xInc = 15;
+		yInc = 9;
 	}
 
 	@Override
@@ -124,10 +129,10 @@ public class GameScreen extends Screen {
 		 * //game pauses if user touches the menu key
 		 * if(Input.GetKey(KeyCode.Menu)) state = GameState.Paused;
 		 */
-
+		
 		// game over
 		if (x < 100)
-			state = GameState.GameOver;
+			state = GameState.GameOver;		
 	}
 
 	private void updatePaused(List<TouchEvent> touchEvents) {
@@ -136,7 +141,7 @@ public class GameScreen extends Screen {
 	}
 
 	private void updateGameOver(List<TouchEvent> touchEvents) {
-
+		
 	}
 
 	@Override
@@ -161,12 +166,14 @@ public class GameScreen extends Screen {
 			g.drawRect(x2, paddleY, 10, 150, Color.WHITE);
 		}
 		if (state == GameState.Paused) {
-			g.drawString("Game Paused, touch screen twice to resume", 100, 200,
+			g.drawString("Game Paused, touch screen twice to resume", 500, 200,
 					paint1);
 		}
 		if (state == GameState.GameOver) {
 			g.clearScreen(Color.BLACK);
 			g.drawString("GAME OVER", 540, 360, paint1);
+			g.drawString("Touch the screen to play again", 540, 560, paint1);
+			
 		}
 
 	}
@@ -185,6 +192,7 @@ public class GameScreen extends Screen {
 	public void pause() {
 		if (state == GameState.Running)
 			state = GameState.Paused;
+		//if()
 
 	}
 
@@ -201,5 +209,5 @@ public class GameScreen extends Screen {
 	@Override
 	public void backButton() {
 		pause();
-	}
+	}	
 }
