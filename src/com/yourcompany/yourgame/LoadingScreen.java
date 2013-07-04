@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
 
+import com.kilobolt.framework.Audio;
 import com.kilobolt.framework.Game;
 import com.kilobolt.framework.Graphics;
 import com.kilobolt.framework.Screen;
@@ -20,6 +21,12 @@ public class LoadingScreen extends Screen {
 		p.setTextAlign(Align.CENTER);
 		p.setAntiAlias(true);
 		p.setColor(Color.CYAN);
+		
+	
+		
+		//picture
+		Graphics g1 = game.getGraphics();
+		Assets.menu = g1.newImage("menu.png", ImageFormat.ARGB4444);
 
 	}
 
