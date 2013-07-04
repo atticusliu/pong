@@ -45,8 +45,8 @@ public class MainMenuScreen extends Screen {
 	@Override
 	public void paint(float deltaTime) {
 		Graphics g = game.getGraphics();
-		g.drawString("Welcome to Pong! Press screen to continue", 540, 360, p1);
-		g.drawString("Use your finger to control the leftmost paddle", 540,
+		g.drawString("Welcome to Pong! Press screen to continue", 640, 360, p1);
+		g.drawString("Use your finger to control the leftmost paddle", 640,
 				620, p1);
 	}
 

@@ -47,7 +47,7 @@ public class GameScreen extends Screen {
 		paint.setAntiAlias(true);
 		paint.setColor(Color.BLACK);
 
-		//for pause button
+		// for pause button
 		// for game over
 		paint1 = new Paint();
 		paint1.setTextSize(40);
@@ -129,10 +129,12 @@ public class GameScreen extends Screen {
 		 * //game pauses if user touches the menu key
 		 * if(Input.GetKey(KeyCode.Menu)) state = GameState.Paused;
 		 */
-		
+
 		// game over
-		if (x < 100)
-			state = GameState.GameOver;		
+		if (x < 100) {
+			state = GameState.GameOver;
+		}
+
 	}
 
 	private void updatePaused(List<TouchEvent> touchEvents) {
@@ -141,7 +143,10 @@ public class GameScreen extends Screen {
 	}
 
 	private void updateGameOver(List<TouchEvent> touchEvents) {
-		
+		if (touchEvents.size() > 0) {
+			reset();
+			state = GameState.Ready;
+		}
 	}
 
 	@Override
@@ -166,14 +171,15 @@ public class GameScreen extends Screen {
 			g.drawRect(x2, paddleY, 10, 150, Color.WHITE);
 		}
 		if (state == GameState.Paused) {
-			g.drawString("Game Paused, touch screen twice to resume", 500, 200,
+			g.clearScreen(Color.BLACK);
+			g.drawString("Game Paused, touch screen twice to resume", 640, 360,
 					paint1);
 		}
 		if (state == GameState.GameOver) {
 			g.clearScreen(Color.BLACK);
-			g.drawString("GAME OVER", 540, 360, paint1);
-			g.drawString("Touch the screen to play again", 540, 560, paint1);
-			
+			g.drawString("GAME OVER", 640, 360, paint1);
+			g.drawString("Touch the screen to play again", 640, 460, paint1);
+
 		}
 
 	}
@@ -192,7 +198,6 @@ public class GameScreen extends Screen {
 	public void pause() {
 		if (state == GameState.Running)
 			state = GameState.Paused;
-		//if()
 
 	}
 
@@ -209,5 +214,33 @@ public class GameScreen extends Screen {
 	@Override
 	public void backButton() {
 		pause();
-	}	
+	}
+
+	public void reset() {
+		paint = new Paint();
+		paint.setTextSize(30);
+		paint.setTextAlign(Paint.Align.CENTER);
+		paint.setAntiAlias(true);
+		paint.setColor(Color.BLACK);
+
+		// for pause button
+		// for game over
+		paint1 = new Paint();
+		paint1.setTextSize(40);
+		paint1.setTextAlign(Paint.Align.CENTER);
+		paint1.setAntiAlias(true);
+		paint1.setColor(Color.WHITE);
+
+		// x and y are rectangle numbers, and
+		x = 100;
+		y = 300;
+		x1 = 100;
+		x2 = 1180;
+		userPaddleY = 50;
+		paddleY = 50;
+
+		// xInc and yInc are speed settings
+		xInc = 15;
+		yInc = 9;
+	}
 }

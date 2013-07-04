@@ -5,6 +5,6 @@ import com.kilobolt.framework.Sound;
 
 public class Assets {
 
-	public static Image menu;
-	public static Sound click;
+	public static Image Beyonce;
+	public static Sound addu;
 }
